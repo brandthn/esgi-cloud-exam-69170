@@ -1,17 +1,15 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
 // database
-const sequelize = new Sequelize(
-  'postgres://fakeurl', // TODO
-  {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
     },
   },
-);
+});
 
 // authentication and synchronization
 sequelize.authenticate()
